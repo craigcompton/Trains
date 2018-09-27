@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>All Aboard!</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
+    crossorigin="anonymous">
+
+    <!-- link unused css -->
+  <link rel="stylesheet" href="style/style.css">
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="jumbotron">
+      <h1 class="display-4 text-center"><strong>ALL ABOARD!</strong></h1>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">
+            <h4>Current Train Scheduel</h4>
+          </th>
+        </tr>
+      </thead>
+      <table class="table" id="tList">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">Train Name</th>
+            <th scope="col">Destination</th>
+            <th scope="col">Frequency (min)</th>
+            <th scope="col">Next Arrival</th>
+            <th scope="col">Minutes Away</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+          </tr>
+        </tbody>
+      </table>
+
+  </div>
+
+  <div class="container">
+
+    <div class="card">
+      <div class="card-header">
+        Add a train
+      </div>
+      <div class="card-body">
+        <form>
+
+          <div class="form-group row">
+            <label for="Train Name" class="col-sm-2 col-form-label">Train Name</label>
+            <div class="col-sm-10">
+              <input type="Train Name" class="form-control" id="trainName" placeholder="Train Name">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="Destination" class="col-sm-2 col-form-label">Destination</label>
+            <div class="col-sm-10">
+              <input type="Destination" class="form-control" id="dest" placeholder="Destination">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="First Train" class="col-sm-2 col-form-label">First Train Time</label>
+            <div class="col-sm-10">
+              <input type="First Train" class="form-control" id="firstTrain" placeholder="HH:mm (military time)">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="Frequency" class="col-sm-2 col-form-label">Frequency</label>
+            <div class="col-sm-10">
+              <input type="Frequency" class="form-control" id="freq" placeholder="Minutes">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-sm-10">
+              <button type="submit" class="btn btn-primary" id="submit">Submit</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+
+
+  <script src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
+    crossorigin="anonymous"></script>
+
+<script src="javascript/javascript.js"></script>
+
+</body>
+
+</html>
