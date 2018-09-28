@@ -29,92 +29,99 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 
-// 2. Button for adding 
+// Button  
 $("#submit").on("click", function (event) {
     event.preventDefault();
 
-    // Grabs user input
+    // user input
     var trainName = $("#trainName").val().trim();
     var dest = $("#dest").val().trim();
     var firstTrain = moment($("#firstTrain").val().trim()).format("HH:mm");
     var freq = $("#freq").val().trim();
 
-    // Creates local "temporary" object for holding employee data
+    console.log(trainName);
+    console.log(dest);
+    console.log(firstTrain);
+    console.log(freq);
+
+    // stores data in a var
     var train = {
         name: trainName,
-        desination: dest,
+        destination: dest,
         startingTrainTime: firstTrain,
         frequency: freq
     };
 
-    // Uploads  data to the database
+    // data to the database
     database.ref().push({
         name: trainName,
-        desination: dest,
+        destination: dest,
         startingTrainTime: firstTrain,
         frequency: freq
     });
 
-    // Logs everything to console
+    //  console logs it 
     console.log(train.name);
-    console.log(train.desination);
+    console.log(train.destination);
     console.log(train.startingTrainTime);
     console.log(train.frequency);
 
-    // alert("Employee successfully added");
-
-    // Clears all of the text-boxes
+    // Clears the text
     $("#trainName").val("");
     $("#dest").val("");
     $("#firstTrain").val("");
     $("#freq").val("");
 });
 
-// 3. Create Firebase event for adding employee to the database and a row in the html when a user adds an entry
+// create event for adding to the database and a row to the html
 database.ref().on("child_added", function (childSnapshot) {
     console.log(childSnapshot.val());
 
-    // Store everything into a variable.
-    // var name = childSnapshot.val().trainName;
-    // var desination = childSnapshot.val().dest;
-    // var startingTrainTime = childSnapshot.val().firstTrain;
-    // var frequency = childSnapshot.val().freq;
-
-    // Store everything into a variable.
+    // Store database into a variable.
     var name = childSnapshot.val().name;
-    var desination = childSnapshot.val().desination;
+    var destination = childSnapshot.val().destination;
     var startingTrainTime = childSnapshot.val().startingTrainTime;
     var frequency = childSnapshot.val().frequency;
 
 
-    // Employee Info
+    // train Info
     console.log(name);
-    console.log(desination);
+    console.log(destination);
     console.log(startingTrainTime);
     console.log(frequency);
 
-    // Prettify the employee start
+    // Prettify the train time
     var startingTrainTimePretty = moment(startingTrainTime).format("HH:mm");
     console.log('startingTrainTime = ', startingTrainTimePretty)
 
-    // Calculate the months worked using hardcore math
-    // To calculate the months worked
-    // var empMonths = moment().diff(moment(empStart), "months");
-    // console.log(empMonths);
+    // First Time (pushed back 1 year to make sure it comes before current time)
+    var firstTime = moment(firstTrain, "HH:mm").subtract(1, "years");
+    console.log(firstTime);
 
-    var nextArrival = moment().diff(moment(startingTrainTimePretty), "minutes");
-    console.log(nextArrival);
+    // Current Time
+    var currentTime = moment();
+    console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
 
-    // Calculate the total billed rate
-    // var empBilled = empMonths * frequency;
-    // console.log(empBilled);
+    // Difference between the times
+    var diffTime = moment().diff(moment(firstTime), "minutes");
+    console.log("DIFFERENCE IN TIME: " + diffTime);
 
-    var minAway = "math";
+    // Time apart (remainder)
+    var tRemainder = diffTime % freq;
+    console.log(tRemainder);
 
-    // Create the new row
+    // Minute Until Train
+    var minAway = freq - tRemainder;
+    console.log("MINUTES TILL TRAIN: " + minAway);
+
+    // Next Train
+    var nextArrival = moment().add(minAway, "minutes");
+    console.log("ARRIVAL TIME: " + moment(nextArrival).format("hh:mm"));
+
+    //  the new html row
     var newRow = $("<tr>").append(
         $("<td>").text(name),
-        $("<td>").text(desination),
+        $("<td>").text(destination),
         $("<td>").text(frequency),
         $("<td>").text(nextArrival),
         $("<td>").text(minAway),
@@ -123,11 +130,3 @@ database.ref().on("child_added", function (childSnapshot) {
     // Append the new row to the table
     $("#tList  > tbody").append(newRow);
 });
-
-  // Example Time Math
-  // -----------------------------------------------------------------------------
-  // Assume Employee start date of January 1, 2015
-  // Assume current date is March 1, 2016
-
-  // We know that this is 15 months.
-  // Now we will create code in moment.js to confirm that any attempt we use meets this test case
